@@ -5,6 +5,13 @@ import torch
 import time
 import pygame
 import threading
+# pygame.init()
+# pygame.mixer.init()
+# sound = pygame.mixer.Sound("alert.wav")
+# print("Playing test beep")
+# sound.play()
+# pygame.time.wait(2000)
+
 
 # Camera Intrinsic Parameters
 cx, cy = 320, 240
@@ -27,6 +34,29 @@ if not cap.isOpened():
 vis = o3d.visualization.Visualizer()
 vis.create_window(window_name="Live Voxel Grid", width=640, height=480)
 geom_added = False
+
+# Coordinate frame and grid
+coord_frame = o3d.geometry.TriangleMesh.create_coordinate_frame(size=0.5, origin=[0, 0, 0])
+vis.add_geometry(coord_frame)
+
+def create_grid(size=5, spacing=0.5):
+    lines = []
+    for i in np.arange(-size, size + spacing, spacing):
+        lines.append([[i, 0, -size], [i, 0, size]])
+        lines.append([[-size, 0, i], [size, 0, i]])
+
+    points = [pt for line in lines for pt in line]
+    indices = [[i, i+1] for i in range(0, len(points), 2)]
+    colors = [[0.5, 0.5, 0.5] for _ in indices]
+
+    grid = o3d.geometry.LineSet()
+    grid.points = o3d.utility.Vector3dVector(points)
+    grid.lines = o3d.utility.Vector2iVector(indices)
+    grid.colors = o3d.utility.Vector3dVector(colors)
+    return grid
+
+grid = create_grid()
+vis.add_geometry(grid)
 
 # Pygame sound init
 pygame.mixer.init()
@@ -98,15 +128,16 @@ while True:
     depth_vis_color = cv2.applyColorMap(depth_vis, cv2.COLORMAP_MAGMA)
 
     # Proximity check
-    threshold = 0.5  # Tune based on your environment
+    threshold = 2.5
     valid_depths = depth_map[depth_map > 0.1]
     if valid_depths.size == 0:
         min_distance = float('inf')
     else:
         min_distance = np.percentile(valid_depths, 2)
+    print("Min distance from camera:", min_distance) 
 
     if min_distance < threshold:
-        cv2.putText(depth_vis_color, "Object Too Close!", (20, 50),
+        cv2.putText(depth_vis_color, "⚠️ Object Too Close!", (20, 50),
                     cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
         start_beep()
     else:
@@ -123,6 +154,8 @@ while True:
         geom_added = True
     else:
         vis.clear_geometries()
+        vis.add_geometry(coord_frame)
+        vis.add_geometry(grid)
         vis.add_geometry(voxel_grid)
 
     vis.poll_events()
