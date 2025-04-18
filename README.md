@@ -9,6 +9,7 @@ This project implements real-time 3D voxel mapping using a webcam and the MiDaS 
 - Voxel grid visualization using Open3D
 - Live webcam feed processing
 - Interactive visualization
+- **Proximity Alert with Beep Sound**: Alerts when an object is too close to the camera.
 
 ## Requirements
 
@@ -42,6 +43,7 @@ python modelxvoxel.py
    - Open your webcam
    - Show the depth map visualization
    - Display the 3D voxel grid visualization
+   - **Play a beep sound if an object is too close**
    - Press 'q' to quit the application
 
 ## Camera Calibration
