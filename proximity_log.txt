@@ -1,0 +1,16 @@
+[2025-04-18 10:34:47.821925] Object too close. Distance: 2.25 
+[2025-04-18 10:34:48.393453] Object too close. Distance: 2.18 
+[2025-04-18 10:34:48.869753] Object too close. Distance: 2.16 
+[2025-04-18 10:34:49.354791] Object too close. Distance: 2.46 
+[2025-04-18 10:34:49.849010] Object too close. Distance: 2.49 
+[2025-04-18 10:34:51.309521] Object too close. Distance: 2.27 
+[2025-04-18 10:34:55.811019] Object too close. Distance: 2.40 
+[2025-04-18 10:34:56.246822] Object too close. Distance: 2.36 
+[2025-04-18 10:34:58.672258] Object too close. Distance: 2.02 
+[2025-04-18 10:35:01.893088] Object too close. Distance: 2.48 
+[2025-04-18 10:35:02.358961] Object too close. Distance: 1.89 
+[2025-04-18 10:35:02.834231] Object too close. Distance: 2.36 
+[2025-04-18 10:35:03.842549] Object too close. Distance: 2.10 
+[2025-04-18 10:35:08.426866] Object too close. Distance: 2.42 
+[2025-04-18 10:35:14.348678] Object too close. Distance: 1.50 
+[2025-04-18 10:35:14.825951] Object too close. Distance: 2.36 

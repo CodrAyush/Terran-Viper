@@ -5,6 +5,7 @@ import torch
 import time
 import pygame
 import threading
+from datetime import datetime
 # pygame.init()
 # pygame.mixer.init()
 # sound = pygame.mixer.Sound("alert.wav")
@@ -60,7 +61,7 @@ vis.add_geometry(grid)
 
 # Pygame sound init
 pygame.mixer.init()
-alert_sound = pygame.mixer.Sound("alert.wav")
+alert_sound = pygame.mixer.Sound("beep.wav")
 
 # Thread control
 beep_running = False
@@ -137,9 +138,11 @@ while True:
     print("Min distance from camera:", min_distance) 
 
     if min_distance < threshold:
-        cv2.putText(depth_vis_color, "⚠️ Object Too Close!", (20, 50),
+        cv2.putText(depth_vis_color, "Object Too Close!", (20, 50),
                     cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
         start_beep()
+        with open("proximity_log.txt", "a") as log_file:
+            log_file.write(f"[{datetime.now()}] Object too close. Distance: {min_distance:.2f} \n")
     else:
         stop_beep()
 
