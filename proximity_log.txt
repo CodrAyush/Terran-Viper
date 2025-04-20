@@ -14,3 +14,6 @@
 [2025-04-18 10:35:08.426866] Object too close. Distance: 2.42 
 [2025-04-18 10:35:14.348678] Object too close. Distance: 1.50 
 [2025-04-18 10:35:14.825951] Object too close. Distance: 2.36 
+[2025-04-20 09:26:49.226355] Object too close. Distance: 2.36 
+[2025-04-20 09:26:51.739385] Object too close. Distance: 2.45 
+[2025-04-20 10:08:49.261197] Object too close. Distance: 2.05 
